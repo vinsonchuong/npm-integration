@@ -1,8 +1,8 @@
 {
   "name": "npm-integration",
   "version": "0.0.1",
-  "description": "",
-  "keywords": [],
+  "description": "Integrate a set of npm packages against each other and the latest version of their dependencies",
+  "keywords": ["npm", "test"],
   "homepage": "https://github.com/vinsonchuong/npm-integration",
   "bugs": "https://github.com/vinsonchuong/npm-integration/issues",
   "license": "MIT",

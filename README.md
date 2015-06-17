@@ -1,6 +1,7 @@
 # npm-integration
 [![Build Status](https://travis-ci.org/vinsonchuong/npm-integration.svg?branch=master)](https://travis-ci.org/vinsonchuong/npm-integration)
-[![Code Climate](https://codeclimate.com/github/vinsonchuong/npm-integration.png)](https://codeclimate.com/github/vinsonchuong/npm-integration)
+
+Integrate a set of npm packages against each other and the latest version of their dependencies
 
 ## Installing
 `npm-integration` is available as an
