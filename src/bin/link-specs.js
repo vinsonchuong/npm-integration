@@ -14,7 +14,13 @@ async function run() {
 
   await* Object.keys(linkDependencies)
     .map(async dependencyName => {
-      await fs.unlink(path.resolve('spec/integration', dependencyName));
+      try {
+        await fs.unlink(path.resolve('spec/integration', dependencyName));
+      } catch (e) {
+        if (e.code !== 'ENOENT') {
+          throw e;
+        }
+      }
       await fs.symlink(
         path.resolve(linkDependencies[dependencyName], 'spec'),
         path.resolve('spec/integration', dependencyName)
