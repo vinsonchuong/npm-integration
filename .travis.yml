@@ -2,3 +2,5 @@
 language: node_js
 node_js:
   - 0.12
+before_install:
+  - node src/bin/clone-link-dependencies.js
