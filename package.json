@@ -8,12 +8,10 @@
   "license": "MIT",
   "author": "Vinson Chuong <vinsonchuong@gmail.com>",
   "files": ["LICENSE", "README.md", "src"],
-  "main": "src/index.js",
   "bin": {
     "clone-link-dependencies": "src/bin/clone-link-dependencies.js",
     "link-specs": "src/bin/link-specs.js",
-    "update-dependencies": "src/bin/update-dependencies.js",
-    "npm-integration": "src/bin/npm-integration.js"
+    "update-dependencies": "src/bin/update-dependencies.js"
   },
   "repository": {
     "type": "git",
