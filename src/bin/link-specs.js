@@ -5,6 +5,14 @@ async function run() {
   const {linkDependencies = {}} = await fs.readJson('package.json');
 
   try {
+    await fs.mkdir(path.resolve('spec'));
+  } catch (e) {
+    if (e.code !== 'EEXIST') {
+      throw e;
+    }
+  }
+
+  try {
     await fs.mkdir(path.resolve('spec/integration'));
   } catch (e) {
     if (e.code !== 'EEXIST') {
