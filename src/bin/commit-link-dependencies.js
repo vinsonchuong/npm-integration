@@ -11,9 +11,16 @@ async function run() {
     if (diff.trim().indexOf('package.json') === -1) { continue; }
 
     await exec(
+      `git config user.email 'vinsonchuong@gmail.com'`,
+      {cwd: dependencyPath}
+    );
+    await exec(
+      `git config user.name 'Vinson Chuong'`,
+      {cwd: dependencyPath}
+    );
+    await exec(
       [
         'git commit',
-        `--author 'Vinson Chuong <vinsonchuong@gmail.com>'`,
         `-m 'Automatically update dependencies'`,
         'package.json'
       ].join(' '),
