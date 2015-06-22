@@ -20,7 +20,7 @@
   },
   "scripts": {
     "prepublish": "../dist-es6/node_modules/.bin/dist-es6",
-    "test": "eslint && link-specs && update-dependencies && npm install && jasmine"
+    "test": "eslint && link-specs && update-dependencies && npm install && jasmine && commit-link-dependencies"
   },
   "linkDependencies": {
     "dist-es6": "../dist-es6",
