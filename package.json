@@ -11,7 +11,8 @@
   "bin": {
     "clone-link-dependencies": "src/bin/clone-link-dependencies.js",
     "link-specs": "src/bin/link-specs.js",
-    "update-dependencies": "src/bin/update-dependencies.js"
+    "update-dependencies": "src/bin/update-dependencies.js",
+    "commit-link-dependencies": "src/bin/commit-link-dependencies.js"
   },
   "repository": {
     "type": "git",
