@@ -10,6 +10,8 @@ async function run() {
       'git diff-index HEAD', {cwd: dependencyPath});
     if (diff.trim().indexOf('package.json') === -1) { continue; }
 
+    process.stdout.write(`Committing 'vinsonchuong/${linkDependencies}'\n`);
+
     await exec(
       `git config user.email 'vinsonchuong@gmail.com'`,
       {cwd: dependencyPath}
