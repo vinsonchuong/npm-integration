@@ -1,4 +1,4 @@
-import {exec} from 'node-promise-es6/child-promise';
+import {exec} from 'node-promise-es6/child-process';
 import fs from 'node-promise-es6/fs';
 
 async function run() {
