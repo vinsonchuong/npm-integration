@@ -6,12 +6,11 @@ async function run() {
   for (const dependencyName of Object.keys(linkDependencies)) {
     const dependencyPath = linkDependencies[dependencyName];
 
-    const {stdout: diff} = await exec(
-      'git diff-index HEAD', {cwd: dependencyPath});
-    if (diff.trim().indexOf('package.json') === -1) { continue; }
+    const {stdout: diff} = await exec('git diff', {cwd: dependencyPath});
+    if (!diff.trim()) { continue; }
 
-    process.stdout.write(diff + '\n');
     process.stdout.write(`Committing 'vinsonchuong/${dependencyName}'\n`);
+    process.stdout.write(diff + '\n');
 
     await exec(
       `git config user.email 'vinsonchuong@gmail.com'`,
