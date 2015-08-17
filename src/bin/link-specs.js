@@ -6,17 +6,17 @@ async function run() {
 
   try {
     await fs.mkdir(path.resolve('spec'));
-  } catch (e) {
-    if (e.code !== 'EEXIST') {
-      throw e;
+  } catch (error) {
+    if (error.code !== 'EEXIST') {
+      throw error;
     }
   }
 
   try {
     await fs.mkdir(path.resolve('spec/integration'));
-  } catch (e) {
-    if (e.code !== 'EEXIST') {
-      throw e;
+  } catch (error) {
+    if (error.code !== 'EEXIST') {
+      throw error;
     }
   }
 
@@ -24,9 +24,9 @@ async function run() {
     .map(async dependencyName => {
       try {
         await fs.unlink(path.resolve('spec/integration', dependencyName));
-      } catch (e) {
-        if (e.code !== 'ENOENT') {
-          throw e;
+      } catch (error) {
+        if (error.code !== 'ENOENT') {
+          throw error;
         }
       }
       await fs.symlink(
@@ -36,7 +36,7 @@ async function run() {
     });
 }
 
-run().catch(e => {
-  process.stderr.write(`${e.stack}\n`);
+run().catch(error => {
+  process.stderr.write(`${error.stack}\n`);
   process.exit(1);
 });

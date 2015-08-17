@@ -7,7 +7,9 @@ async function run() {
     const dependencyPath = linkDependencies[dependencyName];
 
     const {stdout: diff} = await exec('git diff', {cwd: dependencyPath});
-    if (!diff.trim()) { continue; }
+    if (!diff.trim()) {
+      continue;
+    }
 
     process.stdout.write(`Committing 'vinsonchuong/${dependencyName}'\n`);
     process.stdout.write(diff + '\n');
@@ -39,7 +41,7 @@ async function run() {
   }
 }
 
-run().catch(e => {
-  process.stderr.write(`${e.stack}\n`);
+run().catch(error => {
+  process.stderr.write(`${error.stack}\n`);
   process.exit(1);
 });

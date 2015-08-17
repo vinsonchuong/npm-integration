@@ -6,16 +6,22 @@ async function run() {
   const directories = await fs.readdir('node_modules');
   const packages = [];
   for (const directory of directories) {
-    if (directory === '.bin') { continue; }
+    if (directory === '.bin') {
+      continue;
+    }
 
     const stat = await fs.lstat(path.resolve('node_modules', directory));
-    if (stat.isSymbolicLink()) { continue; }
+    if (stat.isSymbolicLink()) {
+      continue;
+    }
 
     packages.push(directory);
   }
 
   const installArgs = packages.map(name => `'${name}@*'`).join(' ');
-  if (!installArgs) { return; }
+  if (!installArgs) {
+    return;
+  }
   const {stdout} = await exec(`npm install ${installArgs}`);
   if (stdout.trim()) {
     process.stdout.write(`${stdout}\n`);
@@ -61,7 +67,7 @@ async function run() {
   process.stdout.write(JSON.stringify(updatedPackages, null, 2) + '\n');
 }
 
-run().catch(e => {
-  process.stderr.write(`${e.stack}\n`);
+run().catch(error => {
+  process.stderr.write(`${error.stack}\n`);
   process.exit(1);
 });

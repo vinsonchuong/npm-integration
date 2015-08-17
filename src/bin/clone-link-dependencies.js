@@ -1,10 +1,13 @@
 #!/usr/bin/env node
+
+/* eslint-disable no-var, no-sync */
+
 var execSync = require('child_process').execSync;
 var path = require('path');
 
 var linkDependencies = Object(
   require(path.resolve('package.json')).linkDependencies);
-Object.keys(linkDependencies).forEach(function(dependencyName) {
+Object.keys(linkDependencies).forEach(function cloneDependency(dependencyName) {
   var dependencyPath = linkDependencies[dependencyName];
   process.stdout.write([
     'Cloning "vinsonchuong/',
@@ -23,11 +26,11 @@ Object.keys(linkDependencies).forEach(function(dependencyName) {
     ].join(''), {stdio: ['pipe', 'pipe', 'pipe']});
     execSync('npm install', {cwd: dependencyPath}, {stdio: ['pipe', 'pipe', 'pipe']});
     process.stdout.write('done');
-  } catch (e) {
-    if (e.message.match(/destination path .*? already exists/)) {
+  } catch (error) {
+    if (error.message.match(/destination path .*? already exists/)) {
       process.stdout.write('already cloned');
     } else {
-      throw e;
+      throw error;
     }
   } finally {
     process.stdout.write('\n');
