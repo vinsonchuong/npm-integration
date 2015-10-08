@@ -2,7 +2,7 @@ import fs from 'node-promise-es6/fs';
 import path from 'path';
 
 async function run() {
-  const {linkDependencies = {}} = await fs.readJson('package.json');
+  const {linkDependencies = {}} = JSON.parse(await fs.readFile('package.json', 'utf8'));
 
   try {
     await fs.mkdir(path.resolve('spec'));

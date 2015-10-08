@@ -2,7 +2,7 @@ import {exec} from 'node-promise-es6/child-process';
 import fs from 'node-promise-es6/fs';
 
 async function run() {
-  const {linkDependencies = {}} = await fs.readJson('package.json');
+  const {linkDependencies = {}} = JSON.parse(await fs.readFile('package.json', 'utf8'));
   for (const dependencyName of Object.keys(linkDependencies)) {
     const dependencyPath = linkDependencies[dependencyName];
 
