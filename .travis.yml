@@ -8,6 +8,10 @@ addons:
       - ubuntu-toolchain-r-test
     packages:
       - g++-4.8
+env:
+  global:
+    secure: Lnof4prgdy00JMF3VIeihfixjIgeUoQPqTYwytZRhKAN0Gf6e/uRiXzvgTWxIhzqIYxzFFcfTyGE+4JOLxn8NusjXESi3h8rrCXLRJKsQO2YAJ5JCg10vY5aFZZPt+mc5I/+CGytJON5FxLA/3ekjdDW+VlDlJ1z9GudWaYP/gR5LI0ZChSsrtbC8uSnPWHbAKEx2Cw3l+33MbEkcrkPSM0McWkJOH7FdGwa1mePqEn9xHD4fsGA7i112aOHB3ZcYink6Xfy6y4OORLsXUrb6IX1CWbcAtSaRw7D6hja1uBnHKday/IKeOL7O80nE0i8O+0pald7WjCf0kqnE1sCulgqBu4VUAn0mUYF8mmHSNK23AkAnof3UQXTPld/cQxyNTwSB2agWQEbzpXlTfmCtcp2+Z5SB2SyOqHaW9Ba4EEFUi+5+2q3cva3t/sSKAwkUnqqh4qz1No7Wwg+HgRB9khVF1/KmZPCkeHR+t0J3pA61kRNb1L6F2ZlRiRJM/T9L6XtjLWygJ6FMboP2dZoKImh690/5aEHhoQVodRhwBjd+FJvw3BNhiUIcdMb3nvWT4qZ2qyMrTmFaGRtJUeuqzTiC9W/d4qLjZGicPYkZ/QpJ9DBsFPshfQgBDm4R+fc5rUvT5uJp8VeVV9aA9z+k1+iZ4kY+aonyHI/O1jzQOY=
 before_install:
   - export CXX='g++-4.8'
   - npm install -g npm
+  - node src/bin/clone-link-dependencies.js
