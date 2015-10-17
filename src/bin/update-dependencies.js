@@ -1,5 +1,4 @@
-import {exec} from 'node-promise-es6/child-process';
-import fs from 'node-promise-es6/fs';
+import {fs, childProcess} from 'node-promise-es6';
 import path from 'path';
 
 async function run() {
@@ -22,7 +21,7 @@ async function run() {
   if (!installArgs) {
     return;
   }
-  const {stdout} = await exec(`npm install ${installArgs}`);
+  const {stdout} = await childProcess.exec(`npm install ${installArgs}`);
   if (stdout.trim()) {
     process.stdout.write(`${stdout}\n`);
   }
