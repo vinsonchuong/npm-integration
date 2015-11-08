@@ -23,6 +23,7 @@
     "test": "eslint && link-specs && update-dependencies && npm install && jasmine && commit-link-dependencies"
   },
   "linkDependencies": {
+    "jspm-node": "../jspm-node",
     "dist-es6": "../dist-es6",
     "jasmine-es6": "../jasmine-es6",
     "serve-es6": "../serve-es6",
