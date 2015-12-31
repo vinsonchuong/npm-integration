@@ -34,7 +34,7 @@ async function run() {
           path.resolve(linkDependencies[dependencyName], 'spec'),
           path.resolve('spec/integration', dependencyName)
         );
-      });
+      })
   );
 }
 

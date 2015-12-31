@@ -29,7 +29,7 @@ async function run() {
   const newestPackageJsons = await Promise.all(
     packages.map(async name =>
       JSON.parse(await fs.readFile(
-        path.resolve('node_modules', name, 'package.json'), 'utf8')));
+        path.resolve('node_modules', name, 'package.json'), 'utf8')))
   );
 
   const newestPackageVersions = newestPackageJsons.reduce(
