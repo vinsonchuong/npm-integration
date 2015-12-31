@@ -7,7 +7,7 @@ async function run() {
 
   const packages = [];
   for (const link of Object.keys(linkDependencies)) {
-    const linkPackageJsonPath = path.resolve('node_modules', link, 'package.json');
+    const linkPackageJsonPath = path.resolve(linkDependencies[link], 'package.json');
     const {dependencies = {}} = JSON.parse(
       await fs.readFile(linkPackageJsonPath, 'utf8'));
     for (const dependency of Object.keys(dependencies)) {
