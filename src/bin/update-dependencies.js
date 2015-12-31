@@ -26,10 +26,12 @@ async function run() {
     process.stdout.write(`${stdout}\n`);
   }
 
-  const newestPackageJsons = await* packages.map(async name =>
-    JSON.parse(await fs.readFile(
-      path.resolve('node_modules', name, 'package.json'), 'utf8'))
+  const newestPackageJsons = await Promise.all(
+    packages.map(async name =>
+      JSON.parse(await fs.readFile(
+        path.resolve('node_modules', name, 'package.json'), 'utf8')));
   );
+
   const newestPackageVersions = newestPackageJsons.reduce(
     (memo, packageJson) =>
       Object.assign(memo, {[packageJson.name]: packageJson.version}),

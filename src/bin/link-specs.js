@@ -20,20 +20,22 @@ async function run() {
     }
   }
 
-  await* Object.keys(linkDependencies)
-    .map(async dependencyName => {
-      try {
-        await fs.unlink(path.resolve('spec/integration', dependencyName));
-      } catch (error) {
-        if (error.code !== 'ENOENT') {
-          throw error;
+  await Promise.all(
+    Object.keys(linkDependencies)
+      .map(async dependencyName => {
+        try {
+          await fs.unlink(path.resolve('spec/integration', dependencyName));
+        } catch (error) {
+          if (error.code !== 'ENOENT') {
+            throw error;
+          }
         }
-      }
-      await fs.symlink(
-        path.resolve(linkDependencies[dependencyName], 'spec'),
-        path.resolve('spec/integration', dependencyName)
-      );
-    });
+        await fs.symlink(
+          path.resolve(linkDependencies[dependencyName], 'spec'),
+          path.resolve('spec/integration', dependencyName)
+        );
+      });
+  );
 }
 
 run().catch(error => {
