@@ -9,7 +9,7 @@ async function run() {
   for (const link of Object.keys(linkDependencies)) {
     const linkPackageJsonPath = path.resolve('node_modules', link, 'package.json');
     const {dependencies = {}} = JSON.parse(
-      await fs.readFile(linkPackageJsonPath, 'utf8')));
+      await fs.readFile(linkPackageJsonPath, 'utf8'));
     for (const dependency of Object.keys(dependencies)) {
       if (!linkDependencies.hasOwnProperty(dependency)) {
         packages.push(dependency);
