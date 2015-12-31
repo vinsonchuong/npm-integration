@@ -2,19 +2,19 @@ import {fs, childProcess} from 'node-promise-es6';
 import path from 'path';
 
 async function run() {
-  const directories = await fs.readdir('node_modules');
+  const {linkDependencies = {}} = JSON.parse(
+    await fs.readFile(path.resolve('package.json'), 'utf8'));
+
   const packages = [];
-  for (const directory of directories) {
-    if (directory === '.bin') {
-      continue;
+  for (const link of Object.keys(linkDependencies)) {
+    const linkPackageJsonPath = path.resolve('node_modules', link, 'package.json');
+    const {dependencies = {}} = JSON.parse(
+      await fs.readFile(linkPackageJsonPath, 'utf8')));
+    for (const dependency of Object.keys(dependencies)) {
+      if (!linkDependencies.hasOwnProperty(dependency)) {
+        packages.push(dependency);
+      }
     }
-
-    const stat = await fs.lstat(path.resolve('node_modules', directory));
-    if (stat.isSymbolicLink()) {
-      continue;
-    }
-
-    packages.push(directory);
   }
 
   const installArgs = packages.map(name => `'${name}@*'`).join(' ');
@@ -39,8 +39,6 @@ async function run() {
   );
 
   const updatedPackages = {};
-  const {linkDependencies = {}} = JSON.parse(
-    await fs.readFile(path.resolve('package.json'), 'utf8'));
   for (const link of Object.keys(linkDependencies)) {
     const linkPackageJson = JSON.parse(await fs.readFile(
       path.resolve(linkDependencies[link], 'package.json'), 'utf8'));
