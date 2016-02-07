@@ -1,5 +1,6 @@
 import {fs, childProcess} from 'node-promise-es6';
 import path from 'path';
+import * as semver from 'semver';
 
 async function run() {
   const {linkDependencies = {}} = JSON.parse(
@@ -52,10 +53,11 @@ async function run() {
       linkPackageJsonPath, 'utf8'));
     const {dependencies = {}} = linkPackageJson;
     for (const dependency of Object.keys(dependencies)) {
-      const newVersion = `^${newestPackageVersions[dependency]}`;
-      if (linkPackageJson.dependencies[dependency] !== newVersion) {
-        updatedPackages[link][dependency] = newVersion;
-        linkPackageJson.dependencies[dependency] = newVersion;
+      const currentVersion = linkPackageJson.dependencies[dependency].slice(1);
+      const newVersion = newestPackageVersions[dependency];
+      if (semver.lt(currentVersion, newVersion)) {
+        updatedPackages[link][dependency] = `^${newVersion}`;
+        linkPackageJson.dependencies[dependency] = `^${newVersion}`;
       }
     }
     await fs.writeFile(
