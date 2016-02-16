@@ -18,7 +18,7 @@ async function run() {
     }
   }
 
-  const installArgs = packages.map(name => `'${name}@*'`).join(' ');
+  const installArgs = packages.map((name) => `'${name}@*'`).join(' ');
   if (!installArgs) {
     return;
   }
@@ -28,7 +28,7 @@ async function run() {
   }
 
   const newestPackageJsons = await Promise.all(
-    packages.map(async name =>
+    packages.map(async (name) =>
       JSON.parse(await fs.readFile(
         path.resolve('node_modules', name, 'package.json'), 'utf8')))
   );
@@ -61,14 +61,16 @@ async function run() {
       }
     }
     await fs.writeFile(
-      linkPackageJsonPath, JSON.stringify(linkPackageJson, null, 2) + '\n');
+      linkPackageJsonPath, `${JSON.stringify(linkPackageJson, null, 2)}\n`);
   }
 
   process.stdout.write('Updated Packages:\n');
-  process.stdout.write(JSON.stringify(updatedPackages, null, 2) + '\n');
+  process.stdout.write(`${JSON.stringify(updatedPackages, null, 2)}\n`);
 }
 
-run().catch(error => {
+run().catch((error) => {
   process.stderr.write(`${error.stack}\n`);
+  /* eslint-disable lines-around-comment, no-process-exit */
   process.exit(1);
+  /* eslint-enable lines-around-comment, no-process-exit */
 });

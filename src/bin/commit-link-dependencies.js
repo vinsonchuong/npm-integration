@@ -11,20 +11,20 @@ async function run() {
     }
 
     process.stdout.write(`Committing 'vinsonchuong/${dependencyName}'\n`);
-    process.stdout.write(diff + '\n');
+    process.stdout.write(`${diff}\n`);
 
     await childProcess.exec(
-      `git config user.email 'vinsonchuong@gmail.com'`,
+      "git config user.email 'vinsonchuong@gmail.com'",
       {cwd: dependencyPath}
     );
     await childProcess.exec(
-      `git config user.name 'Vinson Chuong'`,
+      "git config user.name 'Vinson Chuong'",
       {cwd: dependencyPath}
     );
     await childProcess.exec(
       [
         'git commit',
-        `-m 'Automatically update dependencies'`,
+        "-m 'Automatically update dependencies'",
         'package.json'
       ].join(' '),
       {cwd: dependencyPath}
@@ -40,7 +40,9 @@ async function run() {
   }
 }
 
-run().catch(error => {
+run().catch((error) => {
   process.stderr.write(`${error.stack}\n`);
+  /* eslint-disable lines-around-comment, no-process-exit */
   process.exit(1);
+  /* eslint-enable lines-around-comment, no-process-exit */
 });

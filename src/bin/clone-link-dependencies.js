@@ -1,14 +1,14 @@
 #!/usr/bin/env node
 
-/* eslint-disable no-var, no-sync */
+/* eslint-disable no-sync */
 
-var execSync = require('child_process').execSync;
-var path = require('path');
+const execSync = require('child_process').execSync;
+const path = require('path');
 
-var linkDependencies = Object(
+const linkDependencies = Object(
   require(path.resolve('package.json')).linkDependencies);
-Object.keys(linkDependencies).forEach(function cloneDependency(dependencyName) {
-  var dependencyPath = linkDependencies[dependencyName];
+Object.keys(linkDependencies).forEach((dependencyName) => {
+  const dependencyPath = linkDependencies[dependencyName];
   process.stdout.write([
     'Cloning "vinsonchuong/',
     dependencyName,

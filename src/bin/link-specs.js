@@ -22,7 +22,7 @@ async function run() {
 
   await Promise.all(
     Object.keys(linkDependencies)
-      .map(async dependencyName => {
+      .map(async (dependencyName) => {
         try {
           await fs.unlink(path.resolve('spec/integration', dependencyName));
         } catch (error) {
@@ -38,7 +38,9 @@ async function run() {
   );
 }
 
-run().catch(error => {
+run().catch((error) => {
   process.stderr.write(`${error.stack}\n`);
+  /* eslint-disable lines-around-comment, no-process-exit */
   process.exit(1);
+  /* eslint-enable lines-around-comment, no-process-exit */
 });
