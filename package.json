@@ -32,6 +32,7 @@
     "serve-es6": "../serve-es6",
     "eslint-defaults": "../eslint-defaults",
     "node-promise-es6": "../node-promise-es6",
-    "fs-extra-promise-es6": "../fs-extra-promise-es6"
+    "fs-extra-promise-es6": "../fs-extra-promise-es6",
+    "esnext-decorators": "../esnext-decorators"
   }
 }
