@@ -33,6 +33,7 @@
     "eslint-defaults": "../eslint-defaults",
     "node-promise-es6": "../node-promise-es6",
     "fs-extra-promise-es6": "../fs-extra-promise-es6",
-    "esnext-decorators": "../esnext-decorators"
+    "esnext-decorators": "../esnext-decorators",
+    "directory-helpers": "../directory-helpers"
   }
 }
