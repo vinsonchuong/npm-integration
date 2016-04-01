@@ -19,7 +19,7 @@
     "url": "https://github.com/vinsonchuong/npm-integration"
   },
   "scripts": {
-    "prepublish": "ls -lha node_modules/.bin && ../dist-es6/node_modules/.bin/dist-es6",
+    "prepublish": "../dist-es6/node_modules/.bin/dist-es6",
     "test": "link-specs && update-dependencies && npm install && eslint && jasmine && commit-link-dependencies"
   },
   "dependencies": {

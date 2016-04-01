@@ -10,6 +10,3 @@ env:
 before_install:
   - npm install -g npm
   - node src/bin/clone-link-dependencies.js
-script:
-  - ls -lha node_modules/.bin
-  - npm test
