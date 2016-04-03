@@ -24,6 +24,7 @@
   },
   "dependencies": {
     "dist-es6": "^0.1.13",
+    "node-promise-es6": "^0.3.2",
     "semver": "^5.1.0"
   },
   "linkDependencies": {
