@@ -24,7 +24,6 @@ Object.keys(linkDependencies).forEach((dependencyName) => {
       dependencyPath,
       '\''
     ].join(''), {stdio: ['pipe', 'pipe', 'pipe']});
-    execSync('npm install', {cwd: dependencyPath}, {stdio: ['pipe', 'pipe', 'pipe']});
     process.stdout.write('done');
   } catch (error) {
     if (error.message.match(/destination path .*? already exists/)) {
